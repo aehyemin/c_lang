@@ -99,13 +99,33 @@ int main()
 	return 0;
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////ㄴ/ㄴ//////////////////////////////////////////
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
     /* add your code here */
-}
+	ListNode *cur, *cur2, *pre;
+	// ll1의 현재노드를 가리킬포인터cur,ll2의현재노드를 가리킬포인터cur2,ll1의 다음노드를가리킬포인터pre
 
+	cur = ll1->head;
+	cur2 = ll2->head;
+	while (cur != NULL && cur2 != NULL){
+		pre = cur->next;
+		cur->next = cur2;
+		cur2 = cur2->next;
+		cur2->next->next = pre;
+		cur = pre;
+		ll2->head =cur2;
+	}
+	return;
+ 
+}
+		/* 1번 리스트를 기준으로.
+		1번리스트의 index=0의, next 부분에 2번리스트의 idx=0 번의 값을 꺼내서. 넣어준다.
+		1번리스트가 끝나면?인덱스가 더 없으면? return
+		list1: 1 -> list2 : 4 	가리키는 주소를 연결해준다.
+		*/
+		
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){

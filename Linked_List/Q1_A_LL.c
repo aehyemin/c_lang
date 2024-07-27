@@ -20,10 +20,11 @@ typedef struct _linkedlist{
 	int size;
 	ListNode *head;
 } LinkedList;			// You should not change the definition of LinkedList
-
-
+//
+//그니까 링크트 리스트에 인트가 잇는데 리스트노도의 헤드를 가리키는데 리스트노드는 넥스트를 가리킨다 
 ///////////////////////// function prototypes ////////////////////////////////////
-
+//정렬된 리스트일수도잇고 빈 리스트일수도 없을거같은데 널인가? 널체킹...해야된다고 헐~ 
+//next null 이면 직전값을 출력하면 마지막값 
 //You should not change the prototype of this function
 int insertSortedLL(LinkedList *ll, int item);
 
@@ -87,11 +88,169 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+//정수를 입력하게 해서 그러면 링크드리스트에 오름차순으로 들어간다
+// insertSortedLL 펑션은 만약 이미 최근 링크드리스트에 존재하면 정수를 넣는것을
+// 허용하지 않는다..?
+// 펑션은 새 아이템이 추가된 인덱스 위치를 반환해야하한다
+// 펑션이 잘 동작하지 않으면? -1 을 리턴한다
+// 링크드 리스트가 잘 정돈되거나 빈 리스트라고 가정할 수 있다.
+// let temp = ListNode {
+// next: ll.head,
+// item: item
+// }
 int insertSortedLL(LinkedList *ll, int item)
-{
-	/* add your code here */
+{	              //([Linked list], 8)
+
+   ListNode *pre, *cur;// 이전 노드를 가리킬 포인터 pre와 현재 노드를 가리킬 포인터 cur을 선언합니다.
+
+    if (ll == NULL){
+		return -1;// 링크드 리스트가 NULL이면 -1을 반환합니다.
+	}
+
+    if (ll->head == NULL) {// 리스트에 노드가 하나도 없을 때
+	
+        cur = ll->head; // 현재 노드를 링크드 리스트의 head로 설정합니다.
+        ll->head = malloc(sizeof(ListNode)); // 새로운 노드를 할당합니다.
+        ll->head->item = item;// 새로운 노드의 item에 삽입할 item을 저장합니다.
+        ll->head->next = cur; // 새로운 노드의 next를 현재 노드로 설정합니다.
+        ll->size++; // 리스트의 크기를 1 증가시킵니다.
+        return 0;// 삽입된 위치를 반환합니다.
+	}
+
+    cur = ll->head;// 첫 노드를 가리킵니다.
+   
+
+    if (cur->item > item){// 새로 들어온 노드가 제일 작을 때
+    
+       ll->head = malloc(sizeof(ListNode)); // 새로운 노드를 할당합니다.
+       ll->head->item = item;// 새로운 노드의 item에 삽입할 item을 저장합니다.
+       ll->head->next = cur;// 새로운 노드의 next를 현재 노드로 설정합니다.
+       ll->size++;// 리스트의 크기를 1 증가시킵니다.
+       return 0;// 삽입된 위치를 반환합니다.
+	}
+    
+
+    int idx = 0;// 삽입할 위치를 나타내는 인덱스 변수를 0으로 초기화합니다.
+
+    while(cur != NULL){// 비교 후 집어넣음
+	
+      if (cur->item == item){// 현재 노드의 item이 삽입할 item과 같으면 -1을 반환합니다.
+          return -1;
+	  }
+        idx++;// 인덱스를 1 증가시킵니다.
+        if (cur->next == NULL){// 현재 노드의 next가 NULL이면, 즉 리스트의 마지막이면
+            ll->head = malloc(sizeof(ListNode));// 새로운 노드를 할당합니다.
+            ll->head->item = item;// 새로운 노드의 item에 삽입할 item을 저장합니다.
+            ll->size++;// 리스트의 크기를 1 증가시킵니다.
+            return 0;// 리스트의 크기를 반환합니다.
+		}
+
+       if (cur->next->item > item){// 다음 노드의 item이 삽입할 item보다 크면
+            pre = cur->next;// 이전 노드를 다음 노드로 설정합니다.
+            cur->next = malloc(sizeof(ListNode));// 새로운 노드를 할당합니다.
+            cur->next->item = item;// 새로운 노드의 item에 삽입할 item을 저장합니다.
+            cur->next->next = pre;// 새로운 노드의 next를 이전 노드로 설정합니다.
+            ll->size++;// 리스트의 크기를 1 증가시킵니다.
+            return 0;// 삽입된 위치를 반환합니다.
+        
+
+        cur = cur->next;// 현재 노드를 다음 노드로 설정합니다.
+    
+	   }
+   return -1;// 삽입할 위치를 찾지 못하면 -1을 반환합니다.
 }
+}
+
+	// ListNode *pre, *cur;
+	
+	// if (ll == NULL)
+	// 		return -1;
+
+	// // 리스트에 노드가 하나도 없음
+	// if (ll->head == NULL){
+	// 	cur = ll->head;
+	// 	ll->head = malloc(sizeof(ListNode));
+	// 	ll->head->item = item;
+	// 	ll->head->next = cur;
+	// 	ll->size++;
+	// 	return 0;
+	// }
+
+	// cur = ll->head;
+	// // 새로 들어온 노드가 제일 작을때
+	// if (cur->item > item){
+	// 	ll->head = malloc(sizeof(ListNode));
+	// 	ll->head->item = item;
+	// 	ll->head->next = cur;
+	// 	ll->size++;
+	// 	return 0;
+	// }
+
+	// int index = 0;
+
+	// while(cur !=NULL){
+	// 	if (cur->item == item){
+	// 		return -1;
+	// 	}
+	// 	index ++;
+	// 	if ( cur->next == NULL){
+	// 		cur->next = malloc(sizeof(ListNode));
+	// 		cur->next->item = item;
+	// 		ll->size++;
+	// 		return ll->size;
+	// 	}
+	// 	if (cur->next->item > item){
+	// 		pre = cur->next;
+	// 		cur->next = malloc(sizeof(ListNode));
+	// 		cur->next->item = item;
+	// 		cur->next->next =pre;
+	// 		ll->size++;
+	// 		return index;
+	// 	}
+	// 	cur = cur->next;
+
+
+	// }
+	// return -1;
+
+
+// 	int idx = 0; // index
+	
+// 	ListNode *temp = ll->head; // 안들어갓...내가 넣어줘야대
+// 	// temp->next = ll->head;//띄어쓰기 no
+	
+// //	템프의 아이템을 헤드에다 넣는다
+// 	if (ll->head == NULL){
+// 		insertNode(ll, 0 , item);
+// 		return 0;
+// 	} 
+// 	while ( temp!= NULL){
+// 		if (temp->item == item) {
+// 			return -1;
+// 		}
+// 		else if (temp->item > item){
+// 				insertNode(ll, idx, item);
+// 			return idx;
+// 		}
+// 		temp = temp->next;
+// 		idx++;
+// 	}
+// 	insertNode(ll, idx,item);
+// 	return idx;
+
+
+	
+// 헤드포인트를 업데이트...
+	/* add your code here */
+	/*정렬된 링크드 리스트  
+	링크드 리스트에 값을 넣는 함수이다
+	8은 2앞에 넣는게 아니고 오름차순 위치에 들어가는거...
+	8보다는 작고 앞에 수보다는 큰 부분을 찾아서 
+	링크드리스트의 노드에 들어간 데이터값을 확인해서 
+	입력값보다 작으면 뒤로 한칸씩 옮겨주고 입력값보다 큰 수를 만나면 거기 전에 링크드리스트에 저장
+	일단은 
+	 */
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 

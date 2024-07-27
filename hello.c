@@ -1,4 +1,9 @@
 #include <stdio.h> 
 int main () {
-    printf("hello\n");
+    int a;
+    a = 2;
+
+    printf("%p \n", &a);
+    return 0;
 }
+
