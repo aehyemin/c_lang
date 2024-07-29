@@ -83,19 +83,93 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+void moveOddItemsToBack(LinkedList *ll) {
+	ListNode *LN, *cur=NULL;
+	LN = ll->head;
 
-void moveOddItemsToBack(LinkedList *ll)
-{	
-	while (ll->head != NULL){
+	while (LN != NULL & LN->next !=NULL){
+		if (LN->item %2 != 0 && LN->next->item %2 == 0 ){
+
+			if (cur != NULL)
+			{
+			cur ->next = LN->next;
+			LN->next = LN->next->next;
+			cur->next->next = LN;
+			
+			} else {
+			ll->head = LN->next;
+			LN->next = LN->next->next;
+			ll->head->next = LN;
+		}
+		LN = ll->head;
+		cur = NULL;
+		continue;
+		}
+		cur = LN;
+		LN = LN->next;
+	}
+
+}
+
+
+// 	if (ll == NULL|| ll->head == NULL){
+// 		return;
+// 		}
 	
-		if (ll->head->item / 2 == 
+// 	ListNode *cur, *pre, *tail;
+// 	cur = ll->head; //현재노드
+// 	pre = NULL; //현재 노드의 이전노드
+// 	tail = ll->head; //리스트의 마지막노드
+
+// 	while (tail->next !=NULL){
+// 		tail = tail->next;
+// 	}
+// 	ListNode *end = tail; // 원래 리스트의 마지막노드
+// 	//ListNode *newEnd = end;
+	
+// 	while(cur != NULL){
+// 		if (cur->item %2 != 0){ //현재 노드가 홀수면
+
+// 			if(cur == ll->head){ //현재 노드가 헤드면
+// 				ll->head = cur->next; //헤드를다음노드로
+// 				cur->next = NULL; //현재의노드의넥스트를 널로표시해서 마지막임을 표시
+// 				end->next = cur; //현재노드를 리스트끝에 추가
+// 				end = cur;
+// 				cur = ll->head; //cur새로운노드로 갱신
+// 				pre = NULL;
+// 				//printf("0");
+			
+// 			} else { //현재노드가 헤드가 아닐때
+// 				pre->next=cur->next; //이전노드넥스트를 현재노드의넥스트로바꿈
+// 				cur->next=NULL;
+// 				end->next=cur; // cur이랑 cur->next랑은 다른노드라고!!
+// 				end = cur;
+// 				cur = pre->next;
+// 				//printf("1");
+// 			}
+			
+// 		} else { //현재 노드가 짝수면
+// 			pre=cur;
+// 			cur=cur->next;
+// 			//printf("2");
+// 		}
+// 	}
+// 		//tail->next =NULL;
+// }
+
+	
+	// 홀수뒤에짝수면 바까줌
+	//
+
+		// 현재아이템이 홀수이고 다음노드의아이템이 짝수이면 뒤로 한칸민다
 	/* add your code here
 	먼저 홀수의 개수를 찾은다음,count번 반복하면서, 매번 하나씩 놓습니다.
 	중요한것은 매번반복할때마다 temp 와 count 를 초기화하는것입니다.
+	!!!홀수뒤로보내기!!
 
 	 */
-	}
-}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
