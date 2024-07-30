@@ -103,8 +103,37 @@ int main()
 
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
-{
-/* add your code here */
+{//스택을 사용해서
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+
+	char item, p;
+	
+	while(*expression != '\0'){//여는 괄호면 스택에 넣음 - 닫는괄호면 비교-다른문자면 끝
+		item = *expression;
+		if ( item == '{'|| item == '[' || item == '('){
+			push(&s, item);
+			expression++;
+		} else {
+			p = pop(&s);
+			if (p == '{' && item == '}'){
+				expression++;
+				continue;
+			}
+			else if (p == '[' && item == ']') {
+				expression++;
+				continue;
+			} else if (p == '(' && item == ')') {
+				expression++;
+				continue;
+			} else {
+				return 1;
+			}
+		}
+	}
+	return 0;
+
 }
 
 ////////////////////////////////////////////////////////////

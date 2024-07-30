@@ -116,13 +116,46 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	if (isEmptyQueue(q)){
+		removeAllItemsFromQueue(q);
+	}
+	ListNode *temp = ll->head;
+
+	while ( temp != NULL ){
+		enqueue(q, temp->item);
+		temp = temp->next;
+	}
+	
 }
 
-void removeOddValues(Queue *q)
-{
-	/* add your code here */
+void removeOddValues(Queue *q){
+	ListNode *odd = q->ll.head;
+	ListNode *pre = odd->next;
+
+	while( odd != NULL && odd->item%2 != 0){ //첫번째값이 홀수일때
+		q->ll.head = pre;
+		free(odd);
+		q->ll.size--;
+		odd=pre;
+		pre=odd->next;
+	}
+
+	pre=odd;
+	odd=pre->next;
+
+	while( odd != NULL){
+			if(odd->item%2 !=0){
+			pre->next = odd->next;
+			free(odd);
+			q->ll.size--;
+			odd=pre->next;
+		} else {
+			pre = pre->next;
+			odd = odd->next;
+		}
+	}
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

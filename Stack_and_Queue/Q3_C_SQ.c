@@ -101,10 +101,29 @@ int main()
 
 /////////////////////////////////////////////////////////////////////////////////
 
-int isStackPairwiseConsecutive(Stack *s)
-{
-  /* add your code here */
-}
+int isStackPairwiseConsecutive(Stack *s){
+	//숫자가 쌍으로 연속되는지
+	ListNode *n1, *n2;
+	n1 = s->ll.head;
+	if(n1 == NULL)
+		return 0;
+	while(n1 != NULL) {
+		n2 = n1->next;
+
+		if (n2 == NULL){
+			return 0;
+		}
+		if (n1->item != n2->item +1){
+			return 0;
+		}
+		n1 = n2->next;
+		}
+		return 1;
+	}
+
+
+  
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

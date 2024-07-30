@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hahyemin/c_langauage/c_lang/Linked_List/Q5_A_LL'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003668, symSize: 0x1D0 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003668, symSize: 0x1D0 }
+  - { offsetInCU: 0xA1, offset: 0xA1, size: 0x8, addend: 0x0, symName: _insertNode, symObjAddr: 0x1D0, symBinAddr: 0x100003838, symSize: 0x184 }
+  - { offsetInCU: 0x101, offset: 0x101, size: 0x8, addend: 0x0, symName: _printList, symObjAddr: 0x354, symBinAddr: 0x1000039BC, symSize: 0xBC }
+  - { offsetInCU: 0x133, offset: 0x133, size: 0x8, addend: 0x0, symName: _frontBackSplitLinkedList, symObjAddr: 0x410, symBinAddr: 0x100003A78, symSize: 0x98 }
+  - { offsetInCU: 0x18F, offset: 0x18F, size: 0x8, addend: 0x0, symName: _removeAllItems, symObjAddr: 0x4A8, symBinAddr: 0x100003B10, symSize: 0x70 }
+  - { offsetInCU: 0x1CF, offset: 0x1CF, size: 0x8, addend: 0x0, symName: _findNode, symObjAddr: 0x518, symBinAddr: 0x100003B80, symSize: 0xFC }
+  - { offsetInCU: 0x213, offset: 0x213, size: 0x8, addend: 0x0, symName: _removeNode, symObjAddr: 0x614, symBinAddr: 0x100003C7C, symSize: 0x15C }
+...

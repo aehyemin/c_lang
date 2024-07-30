@@ -108,8 +108,16 @@ int main()
 ////////////////////////////////////////////////////////////
 
 void recursiveReverse(Queue *q)
-{
-/* add your code here */
+{ //재귀를이용해서 거꾸로 뒤집어라
+	int temp = 0;
+	if(q->ll.head == NULL){
+		return;
+	}
+	temp = dequeue(q);
+	recursiveReverse(q);
+	enqueue(q, temp);
+	
+	return;
 }
 
 //////////////////////////////////////////////////////////////////

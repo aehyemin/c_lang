@@ -1,0 +1,18 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hahyemin/c_langauage/c_lang/Stack_and_Queue/Q7_C_SQ'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003454, symSize: 0x190 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003454, symSize: 0x190 }
+  - { offsetInCU: 0xB1, offset: 0xB1, size: 0x8, addend: 0x0, symName: _balanced, symObjAddr: 0x190, symBinAddr: 0x1000035E4, symSize: 0x174 }
+  - { offsetInCU: 0x103, offset: 0x103, size: 0x8, addend: 0x0, symName: _push, symObjAddr: 0x304, symBinAddr: 0x100003758, symSize: 0x30 }
+  - { offsetInCU: 0x135, offset: 0x135, size: 0x8, addend: 0x0, symName: _pop, symObjAddr: 0x334, symBinAddr: 0x100003788, symSize: 0x6C }
+  - { offsetInCU: 0x16B, offset: 0x16B, size: 0x8, addend: 0x0, symName: _removeAllItemsFromStack, symObjAddr: 0x3A0, symBinAddr: 0x1000037F4, symSize: 0x5C }
+  - { offsetInCU: 0x18F, offset: 0x18F, size: 0x8, addend: 0x0, symName: _removeAllItems, symObjAddr: 0x3FC, symBinAddr: 0x100003850, symSize: 0x70 }
+  - { offsetInCU: 0x1CF, offset: 0x1CF, size: 0x8, addend: 0x0, symName: _insertNode, symObjAddr: 0x46C, symBinAddr: 0x1000038C0, symSize: 0x1C4 }
+  - { offsetInCU: 0x22F, offset: 0x22F, size: 0x8, addend: 0x0, symName: _removeNode, symObjAddr: 0x630, symBinAddr: 0x100003A84, symSize: 0x15C }
+  - { offsetInCU: 0x286, offset: 0x286, size: 0x8, addend: 0x0, symName: _peek, symObjAddr: 0x78C, symBinAddr: 0x100003BE0, symSize: 0x58 }
+  - { offsetInCU: 0x2AE, offset: 0x2AE, size: 0x8, addend: 0x0, symName: _isEmptyStack, symObjAddr: 0x7E4, symBinAddr: 0x100003C38, symSize: 0x40 }
+  - { offsetInCU: 0x2D6, offset: 0x2D6, size: 0x8, addend: 0x0, symName: _printList, symObjAddr: 0x824, symBinAddr: 0x100003C78, symSize: 0xBC }
+  - { offsetInCU: 0x308, offset: 0x308, size: 0x8, addend: 0x0, symName: _findNode, symObjAddr: 0x8E0, symBinAddr: 0x100003D34, symSize: 0xFC }
+...

@@ -84,78 +84,90 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 void moveOddItemsToBack(LinkedList *ll) {
-	ListNode *LN, *cur=NULL;
-	LN = ll->head;
+ListNode *cur = ll->head;
+	ListNode *even_start = NULL, *even_end = NULL;
+	ListNode *odd_start = NULL, *odd_end = NULL;
 
-	while (LN != NULL & LN->next !=NULL){
-		if (LN->item %2 != 0 && LN->next->item %2 == 0 ){
+	while (cur != NULL){
+		ListNode *next = cur->next;
+		cur->next = NULL;
 
-			if (cur != NULL)
-			{
-			cur ->next = LN->next;
-			LN->next = LN->next->next;
-			cur->next->next = LN;
-			
+		if ( cur->item % 2 != 0){ //현재 노드가 홀수인경우
+
+			if(odd_start == NULL){ //홀수리스트가 비어있을때
+				odd_start =  cur;
+				odd_end = cur;
+			} else { // 홀수리스트가 비어있지 않았을때
+				odd_end->next = cur;
+				odd_end = cur;
+			}
+
+		} else { // 현재 노드가 짝수인경우
+			if (even_start == NULL){
+				even_start = cur;
+				even_end = cur;
 			} else {
-			ll->head = LN->next;
-			LN->next = LN->next->next;
-			ll->head->next = LN;
+				even_end->next=cur;
+				even_end = cur;
+			}
 		}
-		LN = ll->head;
-		cur = NULL;
-		continue;
-		}
-		cur = LN;
-		LN = LN->next;
+		cur = next;
 	}
-
+	//홀짝 합치기
+	if (even_start ==NULL){
+		ll->head=odd_start;
+	} else {
+		ll->head= even_start;
+		even_end->next=odd_start;
+	}
+	if(odd_end != NULL){
+		odd_end->next = NULL;
+	}
 }
+	
 
 
-// 	if (ll == NULL|| ll->head == NULL){
+// 	if (ll == NULL || ll->head == NULL){
 // 		return;
-// 		}
-	
-// 	ListNode *cur, *pre, *tail;
-// 	cur = ll->head; //현재노드
-// 	pre = NULL; //현재 노드의 이전노드
-// 	tail = ll->head; //리스트의 마지막노드
-
-// 	while (tail->next !=NULL){
-// 		tail = tail->next;
 // 	}
-// 	ListNode *end = tail; // 원래 리스트의 마지막노드
-// 	//ListNode *newEnd = end;
-	
-// 	while(cur != NULL){
-// 		if (cur->item %2 != 0){ //현재 노드가 홀수면
+// 	ListNode *cur, *even, *even_start, *odd, *odd_start;
 
-// 			if(cur == ll->head){ //현재 노드가 헤드면
-// 				ll->head = cur->next; //헤드를다음노드로
-// 				cur->next = NULL; //현재의노드의넥스트를 널로표시해서 마지막임을 표시
-// 				end->next = cur; //현재노드를 리스트끝에 추가
-// 				end = cur;
-// 				cur = ll->head; //cur새로운노드로 갱신
-// 				pre = NULL;
-// 				//printf("0");
-			
-// 			} else { //현재노드가 헤드가 아닐때
-// 				pre->next=cur->next; //이전노드넥스트를 현재노드의넥스트로바꿈
-// 				cur->next=NULL;
-// 				end->next=cur; // cur이랑 cur->next랑은 다른노드라고!!
-// 				end = cur;
-// 				cur = pre->next;
-// 				//printf("1");
-// 			}
-			
-// 		} else { //현재 노드가 짝수면
-// 			pre=cur;
-// 			cur=cur->next;
-// 			//printf("2");
+// 	cur = ll->head;
+// 	even_start = even = malloc(sizeof(ListNode));
+// 	odd_start = odd = malloc(sizeof(ListNode));
+
+// 	int even_cnt = 0;
+// 	int odd_cnt = 0;
+
+
+// 	while(1){
+// 		if(odd_cnt + even_cnt == ll->size){
+// 			odd->next = NULL;
+// 			even->next = odd_start->next;
+// 			ll->head = even_start->next;
+// 			break;
 // 		}
+
+// 		if (cur->item % 2 != 0){ //현재 노드가 홀수일떄
+// 			odd->next=cur;
+// 			odd=cur;
+// 			odd_cnt++;
+
+
+// 		} else { //현재 노드가 짝수일때
+// 			even->next=cur;
+// 			even = cur;
+// 			even_cnt++;
+// 		}
+// 		cur = cur->next;
+
+
+
 // 	}
-// 		//tail->next =NULL;
+	
+
 // }
+
 
 	
 	// 홀수뒤에짝수면 바까줌

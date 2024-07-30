@@ -84,11 +84,49 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void moveEvenItemsToBack(LinkedList *ll)
-{
-	/* add your code here */
-}
+void moveEvenItemsToBack(LinkedList *ll){ //짝수를 뒤로
+	if (ll->head == NULL)
+		return;
+	ListNode *cur = ll->head;
+	ListNode *even_start = NULL, *even_end = NULL;
+	ListNode *odd_start = NULL, *odd_end = NULL;
 
+	while (cur != NULL){
+		ListNode *next = cur->next;
+		cur->next = NULL;
+	
+	if (cur->item %2 == 0){//현재 노드가 짝수인경우
+
+		if(even_start == NULL){
+			even_start = cur;
+			even_end = cur;
+		} else { //짝수리스트가 비어있지않을때
+			even_end->next=cur;
+			even_end = cur;
+		}
+
+	} else {//현재 노드가 홀수일경우
+		if (odd_start == NULL){
+			odd_start = cur;
+			odd_end = cur;
+		} else {
+			odd_end->next=cur;
+			odd_end = cur;
+		}
+
+	}
+	cur = next;
+	}//짝수를 뒤로
+	if (odd_start==NULL){
+		ll->head = even_start;
+	} else {
+		ll->head = odd_start;
+		odd_end->next = even_start;
+	}
+	if (even_end != NULL){
+		even_end->next=NULL;
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 void printList(LinkedList *ll){
