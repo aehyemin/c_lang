@@ -101,8 +101,30 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int hasGreatGrandchild(BTNode *node)
-{
-	/* add your code here */
+{ //기본적으로 노드의 깊이 확인.
+// 노드의깊이가3보다 크거나 같으면 노드item.반환하는것은깊이
+//재귀함수
+    if (node == NULL)
+        return 0;
+
+    int cnt = 0;
+    int left = 0;
+    int right = 0;
+
+    left = hasGreatGrandchild(node->left); //깊이가 3이상인 value.item
+    right = hasGreatGrandchild(node->right);
+
+    if (left >=3 || right >= 3) {
+        printf("%d", node->item);
+    }
+
+    if (left > right)
+        return left+1;
+    else 
+        return right+1;
+
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

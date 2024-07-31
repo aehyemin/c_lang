@@ -90,8 +90,32 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void postOrderIterativeS2(BSTNode *root)
-{
-	 /* add your code here */
+{// 스택두개사용 왼-오-루트
+//s1에 노드를 푸시하여 탐색하고, 방문한노드를s2에 저장
+//넣을때는 루트-오른쪽-왼쪽이지만 팝할때는 반대이다
+	if (root == NULL) return;
+
+	Stack s1,s2;
+	s1.top = NULL;
+	s2.top = NULL;
+	push(&s1, root);
+
+	while(!isEmpty(&s1)) { //비어있지않으면 계속처리
+		BSTNode *node = pop(&s1);
+		push(&s2, node);
+
+		if(node->left != NULL) {
+			push(&s1, node->left);
+		}
+
+		if(node->right != NULL) {
+			push(&s1, node->right);
+		}
+	}
+	while(!isEmpty(&s2)) {
+		BSTNode *node = pop(&s2);
+		printf("%d ", node->item);
+	} 
 }
 
 /* Given a binary search tree and a key, this function

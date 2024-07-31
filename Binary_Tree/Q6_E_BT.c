@@ -104,8 +104,18 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void printSmallerValues(BTNode *node, int m)
-{
-	/* add your code here */
+{ // 입력받은 값보다 작은 값들을 출력
+	
+    if (node == NULL){
+        return;
+
+    } else if (node->item < m){
+        printf("%d ", node->item);    
+    }
+
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

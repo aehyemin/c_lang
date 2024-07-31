@@ -98,10 +98,25 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int countOneChildNodes(BTNode *node)
+int countOneChildNodes(BTNode *node) // 한개의 자식노드를 가진 노드는 몇개?
+{ // null인 경우 0을 반환한다. 그렇지 않으면 아들이 하나만 있으면 왼쪽+오른쪽+1을 반환하고,
+// 그렇지 않으면 왼쪽+오른쪽을 반환한다.
 
-{
-    /* add your code here */
+    if (node == NULL) {
+        return 0;
+    }
+
+    int left, right = 0;
+    left = countOneChildNodes(node->left);
+    right = countOneChildNodes(node->right);
+
+    if( node->left == NULL && node->right != NULL || node->right == NULL && node->left != NULL) {
+        return left + right +1;
+
+    } else {
+        return left+right;
+    }
+  
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

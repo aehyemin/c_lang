@@ -101,10 +101,24 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int sumOfOddNodes(BTNode *node)
+{ //재귀sumodd써라.
+// null인경우0반환,그렇지않으면 항목이 홀수이면 왼+오+item,else 왼+오 반환
+    if (node == NULL) {
+        return 0;
+    }
+    int left = 0;
+    int right = 0;
+    left = sumOfOddNodes(node->left);
+    right = sumOfOddNodes(node->right);
 
-{
-    /* add your code here */
-}
+    if (node->item % 2 !=0 ){
+        return left + right + node->item;
+    } else {
+        return left + right;
+    }
+
+} 
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

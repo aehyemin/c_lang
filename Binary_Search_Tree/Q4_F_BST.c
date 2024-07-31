@@ -90,8 +90,33 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void postOrderIterativeS1(BSTNode *root)
-{
-	 /* add your code here */
+{//후위순회. 한개의 스택만
+//왼-오-루트 // 먼저 넣은 요소가 나중에 나오기 때문에
+// 루트 -오른쪽 - 왼쪽 순으로 넣어줘야한다
+//전위,중위와 차별화된더. 모든자식노드를 먼저방문한후 루트방문
+	if (root == NULL) 
+		return;
+	BSTNode *cur = root; //현재탐색중
+	BSTNode *pre = NULL; //마지막으로방문한노드
+	Stack s;
+	s.top = NULL;
+	push(&s, cur);
+
+	while (!isEmpty(&s) || cur != NULL) {
+		if (cur != NULL) {
+			push(&s, cur);
+			cur = cur->left;
+
+		} else {
+			BSTNode *peekNode = s.top->data;
+			if (peekNode->right != NULL && pre != peekNode->right) {
+				cur = peekNode->right;
+			} else {
+				printf("%d ", peekNode->item);
+				pre = pop(&s);
+			}
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -92,9 +92,25 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void levelOrderTraversal(BSTNode* root)
-{
+{//큐를 사용하여 노드깊이에 따라 출력
+	BSTNode *node = root;
+	Queue q;
+	q.head = NULL;
+	q.tail = NULL;
 
-    /* add your code here */
+	enqueue(&q.head, &q.tail, root);
+	
+    while (q.head != NULL){
+		node = dequeue(&q.head, &q.tail);
+		if (node == NULL)
+			continue;
+
+		printf("%d", node->item);
+		printf(" ");
+
+		enqueue(&q.head, &q.tail, node->left);
+		enqueue(&q.head, &q.tail, node->right);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
